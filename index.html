@@ -796,9 +796,8 @@
     display: block;
     font-size: 0.8rem;
     color: #f87171;
-    margin-top: 8px;
+    margin-top: 10px;
     text-align: center;
-    width: 100%;
   }
 
   /* Screen-reader only */
@@ -1226,20 +1225,20 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
   }
 
-  function showError(input, msg) {
+  function showError(form, input, msg) {
     input.classList.add('input-error');
-    let err = input.parentElement.querySelector('.field-error');
+    let err = form.parentElement.querySelector('.field-error');
     if (!err) {
       err = document.createElement('span');
       err.className = 'field-error';
-      input.parentElement.appendChild(err);
+      form.insertAdjacentElement('afterend', err);
     }
     err.textContent = msg;
   }
 
-  function clearError(input) {
+  function clearError(form, input) {
     input.classList.remove('input-error');
-    const err = input.parentElement.querySelector('.field-error');
+    const err = form.parentElement.querySelector('.field-error');
     if (err) err.remove();
   }
 
@@ -1253,19 +1252,19 @@
     const input = form.querySelector('input[type="email"]');
 
     // Clear error on input
-    input.addEventListener('input', () => clearError(input));
+    input.addEventListener('input', () => clearError(form, input));
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      clearError(input);
+      clearError(form, input);
 
       if (!input.value.trim()) {
-        showError(input, 'Please enter your email address.');
+        showError(form, input, 'Please enter your email address.');
         input.focus();
         return;
       }
       if (!isValidEmail(input.value)) {
-        showError(input, 'Please enter a valid email — e.g. you@brand.com');
+        showError(form, input, 'Please enter a valid email — e.g. you@brand.com');
         input.focus();
         return;
       }
