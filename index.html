@@ -787,6 +787,20 @@
   .reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.53s; }
   .reveal-stagger.visible > *:nth-child(8) { transition-delay: 0.61s; }
 
+  /* Email validation error */
+  .input-error {
+    border-color: #f87171 !important;
+    box-shadow: 0 0 0 3px rgba(248,113,113,0.18) !important;
+  }
+  .field-error {
+    display: block;
+    font-size: 0.8rem;
+    color: #f87171;
+    margin-top: 8px;
+    text-align: center;
+    width: 100%;
+  }
+
   /* Screen-reader only */
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 </style>
@@ -1207,6 +1221,28 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
+  // RFC-5321-inspired structural check: local@domain.tld
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+  }
+
+  function showError(input, msg) {
+    input.classList.add('input-error');
+    let err = input.parentElement.querySelector('.field-error');
+    if (!err) {
+      err = document.createElement('span');
+      err.className = 'field-error';
+      input.parentElement.appendChild(err);
+    }
+    err.textContent = msg;
+  }
+
+  function clearError(input) {
+    input.classList.remove('input-error');
+    const err = input.parentElement.querySelector('.field-error');
+    if (err) err.remove();
+  }
+
   // Web3Forms submit handler
   function bindForm(formId, helperId, successId) {
     const form    = document.getElementById(formId);
@@ -1214,10 +1250,25 @@
     const success = document.getElementById(successId);
     if (!form) return;
 
+    const input = form.querySelector('input[type="email"]');
+
+    // Clear error on input
+    input.addEventListener('input', () => clearError(input));
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
-      if (!input.value || !input.validity.valid) { input.focus(); return; }
+      clearError(input);
+
+      if (!input.value.trim()) {
+        showError(input, 'Please enter your email address.');
+        input.focus();
+        return;
+      }
+      if (!isValidEmail(input.value)) {
+        showError(input, 'Please enter a valid email — e.g. you@brand.com');
+        input.focus();
+        return;
+      }
 
       const btn = form.querySelector('button');
       btn.disabled    = true;
