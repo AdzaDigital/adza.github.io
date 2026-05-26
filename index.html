@@ -454,8 +454,10 @@
     <p class="hero-sub">adza.ai connects to your store, learns your brand, and generates dozens of ready-to-publish ad creatives in minutes — not days.</p>
 
     <form class="email-form" id="heroForm" novalidate>
+      <input type="hidden" name="access_key" value="3da58a87-b0e7-414c-9c48-ffb38987b3c1">
+      <input type="hidden" name="subject" value="adza.ai — New Early Access Request">
       <label for="heroEmail" class="sr-only">Email address</label>
-      <input type="email" id="heroEmail" placeholder="you@brand.com" autocomplete="email" required>
+      <input type="email" id="heroEmail" name="email" placeholder="you@brand.com" autocomplete="email" required>
       <button type="submit">Get Early Access</button>
     </form>
     <p class="form-note" id="heroNote">Free early access. No credit card required.</p>
@@ -574,8 +576,10 @@
     <h2 id="cta-heading">Be first in line</h2>
     <p>Drop your email and we'll let you know the moment adza.ai opens up.</p>
     <form class="email-form" id="ctaForm" novalidate>
+      <input type="hidden" name="access_key" value="3da58a87-b0e7-414c-9c48-ffb38987b3c1">
+      <input type="hidden" name="subject" value="adza.ai — New Early Access Request">
       <label for="ctaEmail" class="sr-only">Email address</label>
-      <input type="email" id="ctaEmail" placeholder="you@brand.com" autocomplete="email" required>
+      <input type="email" id="ctaEmail" name="email" placeholder="you@brand.com" autocomplete="email" required>
       <button type="submit">Get Early Access</button>
     </form>
     <p class="form-note" id="ctaNote">We'll never spam you. Unsubscribe anytime.</p>
@@ -606,23 +610,46 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // Generic form submit handler
+  // Generic form submit handler — POSTs to Web3Forms
   function bindForm(formId, noteId, successId) {
     const form    = document.getElementById(formId);
     const note    = document.getElementById(noteId);
     const success = document.getElementById(successId);
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const input = form.querySelector('input[type="email"]');
       if (!input.value || !input.validity.valid) {
         input.focus();
         return;
       }
-      form.style.display    = 'none';
-      note.style.display    = 'none';
-      success.style.display = 'block';
+
+      const btn = form.querySelector('button');
+      btn.disabled    = true;
+      btn.textContent = 'Submitting…';
+
+      try {
+        const res  = await fetch('https://api.web3forms.com/submit', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body:    JSON.stringify({ access_key: '3da58a87-b0e7-414c-9c48-ffb38987b3c1', email: input.value, subject: 'adza.ai — New Early Access Request' }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.style.display    = 'none';
+          note.style.display    = 'none';
+          success.style.display = 'block';
+        } else {
+          btn.disabled    = false;
+          btn.textContent = 'Get Early Access';
+          alert('Something went wrong — please try again.');
+        }
+      } catch {
+        btn.disabled    = false;
+        btn.textContent = 'Get Early Access';
+        alert('Network error — please try again.');
+      }
     });
   }
 
