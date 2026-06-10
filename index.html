@@ -199,6 +199,10 @@
   .wordmark .dot { color: var(--green); }
   .wordmark-mark { width: 28px; height: 28px; display: inline-block; }
   .nav-cta { padding: 10px 18px; font-size: 0.88rem; }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; color: var(--text-mute); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
 
   /* Section base */
   section.s { position: relative; padding: 120px 0; }
@@ -850,6 +854,10 @@
       </svg>
       adza<span class="dot">.</span>ai
     </a>
+    <nav class="nav-links" aria-label="Site sections">
+      <a href="#why-adza">About</a>
+      <a href="#features">Features</a>
+    </nav>
     <a href="#cta-bottom" class="btn btn-primary nav-cta">Join the Waitlist <span class="btn-arrow" aria-hidden="true">→</span></a>
   </div>
 </nav>
@@ -903,7 +911,7 @@
 </section>
 
 <!-- 03 · THE PROMISE -->
-<section class="s s-dark">
+<section id="why-adza" class="s s-dark">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">Why adza.ai</div>
@@ -1145,11 +1153,11 @@
 </section>
 
 <!-- 07 · FEATURES -->
-<section class="s s-dark">
+<section id="features" class="s s-dark">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">Platform Features</div>
-      <h2 class="h-display" style="margin-top:20px">Everything else you'll want to know</h2>
+      <h2 class="h-display" style="margin-top:20px">Powerful features, beautifully simple</h2>
     </div>
     <div class="features-grid reveal-stagger">
       <div class="feat">
