@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>adza ai — AI Ad Creative Platform for DTC Brands | Meta & TikTok Ads in Minutes</title>
-<meta name="description" content="adza ai is an AI-powered performance creative platform for DTC brands. Generate hundreds of on-brand Meta and TikTok ads — static, video, UGC, and AI avatar — in under 30 minutes. No agency. No headcount.">
-<meta name="keywords" content="AI ad creative, DTC ad platform, Meta ads automation, TikTok ads generator, performance creative, UGC ads, AI avatar ads, ecommerce advertising, Shopify ad creative, ad creative tool">
+<title>adza ai — AI Ad Creative Platform for DTC Brands | Meta, Google & TikTok Ads in Minutes</title>
+<meta name="description" content="adza ai is an AI-powered performance creative platform for DTC brands. Generate hundreds of on-brand Meta, Google and TikTok ads — static, video, UGC, and AI avatar — in under 30 minutes. No agency. No headcount.">
+<meta name="keywords" content="AI ad creative, DTC ad platform, Meta ads automation, TikTok ads generator, Google ads automation, performance creative, UGC ads, AI avatar ads, ecommerce advertising, Shopify ad creative, WooCommerce ads, ad creative tool, creative automation">
 <meta name="robots" content="index, follow">
+<meta name="author" content="Adzalabs">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="application-name" content="adza ai">
 <link rel="canonical" href="https://adza.ai">
 
 <!-- Open Graph -->
 <meta property="og:title" content="adza ai — AI Ad Creative Platform for DTC Brands">
-<meta property="og:description" content="Generate hundreds of on-brand Meta and TikTok ads in under 30 minutes. Static, video, UGC, and AI avatar ads — powered by human-engineered templates and AI.">
+<meta property="og:description" content="Generate hundreds of on-brand Meta, Google and TikTok ads in under 30 minutes. Static, video, UGC, and AI avatar ads — powered by human-engineered templates and AI.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://adza.ai">
 <meta property="og:site_name" content="adza ai">
@@ -24,7 +27,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="adza ai — AI Ad Creative Platform for DTC Brands">
-<meta name="twitter:description" content="Generate hundreds of on-brand Meta and TikTok ads in under 30 minutes. Static, video, UGC, and AI avatar ads — powered by human-engineered templates and AI.">
+<meta name="twitter:description" content="Generate hundreds of on-brand Meta, Google and TikTok ads in under 30 minutes. Static, video, UGC, and AI avatar ads — powered by human-engineered templates and AI.">
 <meta name="twitter:image" content="https://adza.ai/og-image.png">
 <meta name="twitter:image:alt" content="adza ai — AI-powered performance creative platform for DTC brands">
 
@@ -38,7 +41,7 @@
   "operatingSystem": "Web",
   "url": "https://adza.ai",
   "logo": "https://adza.ai/og-image.png",
-  "description": "AI-powered performance creative platform for DTC brands. Generate hundreds of on-brand Meta and TikTok ads — static, video, UGC, and AI avatars — in under 30 minutes. Syncs directly with Shopify and WooCommerce.",
+  "description": "AI-powered performance creative platform for DTC brands. Generate hundreds of on-brand Meta, Google and TikTok ads — static, video, UGC, and AI avatars — in under 30 minutes. Syncs directly with Shopify and WooCommerce.",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -298,7 +301,7 @@
     border-color: var(--green);
     box-shadow: 0 0 0 3px var(--green-dim);
   }
-  .form-helper { font-size: 0.82rem; color: var(--text-dim); }
+  .form-helper { font-size: 0.82rem; color: var(--text-dim); text-align: center; }
 
   .success-msg {
     display: none;
@@ -624,11 +627,13 @@
     overflow: hidden;
   }
   .features-grid > .feat:nth-child(-n+4) { grid-column: span 3; }
-  .features-grid > .feat:nth-child(n+5)  { grid-column: span 4; }
+  .features-grid > .feat:nth-child(n+5):not(:last-child) { grid-column: span 4; }
+  .features-grid > .feat:last-child { grid-column: 1 / -1; }
   @media (max-width: 1000px) {
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .features-grid > .feat:nth-child(-n+4),
-    .features-grid > .feat:nth-child(n+5) { grid-column: span 1; }
+    .features-grid > .feat:nth-child(n+5):not(:last-child) { grid-column: span 1; }
+    .features-grid > .feat:last-child { grid-column: 1 / -1; }
   }
   @media (max-width: 600px) {
     .features-grid { grid-template-columns: 1fr; }
@@ -878,8 +883,8 @@
   <div class="container">
     <div class="hero-inner">
       <div class="eyebrow reveal">Ad Creative Platform for DTC &amp; eCommerce Brands</div>
-      <h1 id="hero-heading" class="h-display reveal" style="transition-delay:0.08s">Your Performance Creative Team, <em>Powered by AI</em></h1>
-      <p class="hero-sub reveal" style="transition-delay:0.16s">adza ai syncs instantly with your store, injects your brand DNA into human-engineered ad templates, and deploys hundreds of platform-ready Meta and TikTok ads in minutes</p>
+      <h1 id="hero-heading" class="h-display reveal" style="transition-delay:0.08s">Unblock your creative bottleneck</h1>
+      <p class="hero-sub reveal" style="transition-delay:0.16s">adza ai syncs with your store, injects your brand DNA into human-engineered ad templates, and deploys hundreds of platform-ready Meta, Google and TikTok ads in minutes</p>
       <div class="hero-form reveal" style="transition-delay:0.24s">
         <form class="form-row" id="heroForm" novalidate>
           <label for="heroEmail" class="sr-only">Email address</label>
@@ -894,11 +899,11 @@
 </section>
 
 <!-- 02 · WHO THIS IS FOR -->
-<section class="s s-light who">
+<section class="s s-light who" aria-label="Why choose adza ai">
   <div class="container">
     <div class="who-grid">
       <div class="reveal">
-        <div class="eyebrow" style="margin-bottom:20px">Built for High-Growth DTC &amp; eCommerce Brands</div>
+        <div class="eyebrow" style="margin-bottom:20px">Outpace ad fatigue. Outperform your competitors</div>
         <h2 class="h-display">Don't let creative bottlenecks cap your ROAS</h2>
       </div>
       <div class="who-body reveal" style="transition-delay:0.1s">
@@ -921,14 +926,14 @@
 <section id="why-adza" class="s s-dark">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Why adza ai — AI-Powered Ad Creative for DTC Brands</div>
+      <div class="eyebrow">Why adza ai</div>
       <h2 class="h-display" style="margin-top:20px">From Cold Start to Live Campaigns in 30 Minutes</h2>
     </div>
     <div class="promise-grid reveal-stagger">
       <div class="promise-card">
         <div class="promise-num">01 / Sync &amp; Extract</div>
-        <h3>Connect Shopify or Woo</h3>
-        <p>adza ai instantly extracts your brand identity—colours, fonts, and tone—directly from your live site.</p>
+        <h3>Connect Shopify or WooCommerce</h3>
+        <p>adza ai extracts your brand identity (colours, fonts, and tone) &amp; products directly from your live site.</p>
       </div>
       <div class="promise-card">
         <div class="promise-num">02 / Safe Generation</div>
@@ -950,10 +955,10 @@
 </section>
 
 <!-- 04 · AD TYPES -->
-<section class="s s-light ad-types">
+<section class="s s-light ad-types" aria-label="Ad types and creative formats">
   <div class="container">
     <div class="section-head center reveal">
-      <div class="eyebrow" style="justify-content:center">What You Get — Ad Types &amp; Creative Formats</div>
+      <div class="eyebrow" style="justify-content:center">Ad Types &amp; Creative Formats</div>
       <h2 class="h-display" style="margin-top:20px; font-size:clamp(1.8rem,3.5vw,3rem)">One product. Unlimited creativity.</h2>
       <p>adza ai doesn't just make "ads". It produces a full creative library from a single product, across every format that performs on Meta, TikTok, and Google.</p>
     </div>
@@ -1064,13 +1069,13 @@
 <section id="features" class="s s-dark">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Platform Features — AI Ad Creative Tools for Performance Teams</div>
+      <div class="eyebrow">Platform Features</div>
       <h2 class="h-display" style="margin-top:20px">Powerful features, beautifully simple</h2>
     </div>
     <div class="features-grid reveal-stagger">
       <div class="feat">
         <div class="feat-num">01</div>
-        <h3>50+ Templates at Launch</h3>
+        <h3>200+ Premium ad templates</h3>
         <p>Human-designed, tagged by hook type and category. Growing to 200+.</p>
       </div>
       <div class="feat">
@@ -1108,7 +1113,7 @@
 </section>
 
 <!-- 08 · STATS -->
-<section class="s s-sm s-light stats">
+<section class="s s-sm s-light stats" aria-label="Key platform statistics">
   <div class="container">
     <div class="stats-grid reveal-stagger">
       <div class="stat">
@@ -1151,9 +1156,8 @@
 </main>
 
 <!-- FOOTER -->
-<footer>
+<footer aria-label="Site footer">
   <div class="container">
-    <a href="#top" class="wordmark">adza<span class="dot">.</span>ai</a>
     <div>© 2026 Adzalabs Pty Ltd</div>
   </div>
 </footer>
