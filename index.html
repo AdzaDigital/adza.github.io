@@ -1226,24 +1226,20 @@
       btn.textContent = 'Submitting…';
 
       try {
-        const res  = await fetch('https://api.web3forms.com/submit', {
+        await fetch('https://script.google.com/macros/s/AKfycbzopAKmRdaRgZD5R2i2q6BDUFR0q47TBI3Z5Jq3ldFpEweVZJNI9_yEMePCt8wGcI8ePA/exec', {
           method:  'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          mode:    'no-cors',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            access_key: '3da58a87-b0e7-414c-9c48-ffb38987b3c1',
-            email:      input.value,
-            subject:    'adza ai — New Early Access Request',
+            email:  input.value,
+            source: 'waitlist',
           }),
         });
-        const data = await res.json();
-        if (data.success) {
+        // no-cors means response is opaque — treat any non-throw as success
+        {
           form.style.display    = 'none';
           if (helper) helper.style.display = 'none';
           success.style.display = 'block';
-        } else {
-          btn.disabled    = false;
-          btn.textContent = btnOriginalText;
-          alert('Something went wrong — please try again.');
         }
       } catch {
         btn.disabled    = false;
